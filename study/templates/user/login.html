@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+{% load staticfiles %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/signin.css' %}">
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
+    <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
+{% endblock %}
+{% block content %}
+    <div class="container">
+
+      <form class="form-signin" novalidate method="post">
+          {% csrf_token %}
+        <h2 class="form-signin-heading">{{ title_login }}</h2>
+          {{ form }}
+
+          <p></p>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+    </div> <!-- /container -->
+{% endblock %}

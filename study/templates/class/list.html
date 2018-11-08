@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <table class="table table-condensed table-striped table-hover table-bordered">
+        <tr>
+            <th>序列</th>
+            <th>名称</th>
+            <th>密码</th>
+            <th>操作</th>
+        </tr>
+        {% for item in my_list %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.password }}</td>
+                <td>
+                    <a href="/login/edit/{{ item.id }}" class="btn"><i class="fa fa-edit" aria-hidden="true"></i>修改</a>
+                    <a href="/login/delete/{{ item.id }}" class="btn"><i class="fa fa-remove" aria-hidden="true"></i>删除</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
