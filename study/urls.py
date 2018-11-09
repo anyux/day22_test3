@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^class/list/', classList.list),
     url(r'^class/edit/(\d+)', classList.edit),
     url(r'^class/delete/(\d+)', classList.delete),
+    #添加无意义的url
 ]
