@@ -21,8 +21,8 @@ urlpatterns = [
     url(r'^course/edit/(\d+)', course.edit),
     url(r'^course/delete/(\d+)', course.delete),
     #班级
-    url(r'^classList/register/', classList.register),
-    url(r'^classList/list/', classList.list),
-    url(r'^classList/edit/(\d+)', classList.edit),
-    url(r'^classList/delete/(\d+)', classList.delete),
+    url(r'^class/register/', classList.register),
+    url(r'^class/list/', classList.list),
+    url(r'^class/edit/(\d+)', classList.edit),
+    url(r'^class/delete/(\d+)', classList.delete),
 ]

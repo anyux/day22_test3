@@ -15,6 +15,7 @@ def list(request):
     total_count = models.ClassList.objects.all().count()  # 数据库中数据总条数
     pager = Pagination(page, total_count, '/study/class/list/',1)
     my_list = models.ClassList.objects.all()[pager.start :pager.end]
+
     return render(request,'class/list.html',locals())
 
 
@@ -37,12 +38,19 @@ def register(request):
     if request.method == "GET":
         return render(request,"class/register.html",locals())
     else:
-        form = ClassListModelForm(data=request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/study/class/list/')
+        # form = ClassListModelForm(data=request.POST)
+        # 多对多表映射操作
+        courseId = models.Course.objects.get(id=request.POST.get('course'))
+        userId = models.User.objects.get(id=request.POST.get('teachers'))
+        new_num = request.POST.get('num')
+        classObj = ClassList(num=new_num,course=courseId)
 
-        return render(request,"class/register.html",locals())
+        classObj.save()
+        classObj.teachers.add(userId)
+        classObj.save()
+        return redirect('/study/class/list/')
+
+    return render(request,"class/register.html",locals())
 
 def edit(request,nid):
     obj = ClassList.objects.filter(id=nid).first()

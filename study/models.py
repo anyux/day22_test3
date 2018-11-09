@@ -8,7 +8,7 @@ class User(models.Model):
     password = models.CharField(verbose_name='密码', max_length=64)
 
     def __str__(self):
-        return '<{} {}>'.format(self.name, self.password)
+        return '{}'.format(self.name)
 
 
 class Course(models.Model):
@@ -21,11 +21,16 @@ class Course(models.Model):
     """
     title = models.CharField(verbose_name='课程名称', max_length=32)
 
+    def __str__(self):
+        return '{}'.format(self.title)
+
 
 class ClassList(models.Model):
     """
     班级表
     """
     course = models.ForeignKey(verbose_name='课程', to='Course')
-    num = models.IntegerField(verbose_name='期')
+    num = models.IntegerField(verbose_name='第几期')
     teachers = models.ManyToManyField(verbose_name='老师', to='User')
+    def __str__(self):
+        return '{} {} {}'.format(self.course.title,self.num,self.teachers.name)

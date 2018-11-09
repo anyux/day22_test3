@@ -21,13 +21,14 @@ class ClassListModelForm(ModelForm):
                 'class':'form-control',
                 'placeholder':"教师",
             }),
+            'num' : forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':"第几期",
+            }),
         }
         error_messages = {
             'course' : {
                 'required':'用户名不能为空'
             },
-            'password':{
-                'required':'密码不能为空'
-            }
 
         }
